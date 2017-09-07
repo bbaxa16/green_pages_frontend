@@ -1,0 +1,23 @@
+{
+  "name": "green_pages_front",
+  "version": "1.0.0",
+  "description": "development team:",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bbaxa16/green_pages_frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bbaxa16/green_pages_frontend/issues"
+  },
+  "homepage": "https://github.com/bbaxa16/green_pages_frontend#readme",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}
