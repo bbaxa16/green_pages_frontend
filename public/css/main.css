@@ -2,7 +2,7 @@ nav {
   background: #3F6A4F;
   color: #FFFFFF;
 }
-nav ul li {
+.navbar-right li {
   display: inline-block;
   list-style-type: none;
 }

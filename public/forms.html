@@ -2,19 +2,20 @@
 
 <!-- LOGIN -->
 <div class="container text-center" ng-if="user.loginDisplay">
-  <form>
-    <input type="text" name="" placeholder="username">
-    <input type="text" name="" placeholder="password"><br/>
-    <button class="btn-default" type="button" name="button">Login</button>
+  <form ng-submit="user.login(userJWT)">
+    <input type="text" ng-model="userJWT.username" placeholder="username">
+    <input type="password" ng-model="userJWT.password" placeholder="password"><br/>
+    <button class="btn-default" type="submit" name="button">Login</button>
   </form>
 </div>
 
 <!-- REGISTER -->
 <div class="container text-center" ng-if="user.registerDisplay">
-  <form>
-    <input type="text" name="" placeholder="username">
-    <input type="password" name="" placeholder="password">
-    <input type="password" name="" placeholder="confirm password"><br/>
-    <button class="btn-default" type="button" name="button">Register</button>
+  <form ng-submit="user.register(userRegister)">
+    <input type="text" ng-model="userRegister.username" placeholder="username">
+    <input type="password" ng-model="userRegister.password" placeholder="password">
+    <!-- not sure exactly how to run the confirm password thing -->
+    <input type="password" ng-model="userRegister.password" placeholder="confirm password"><br/>
+    <button class="btn-default" type="submit" name="button">Register</button>
   </form>
 </div>
