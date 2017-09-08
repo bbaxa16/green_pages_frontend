@@ -1,2 +1,20 @@
+<!-- LOGIN AND REGISTER FORMS -->
 
-<h1>poop</h1>
+<!-- LOGIN -->
+<div ng-if="user.loginDisplay">
+  <form>
+    <input type="text" name="" placeholder="username">
+    <input type="text" name="" placeholder="password"><br/>
+    <button class="btn-default" type="button" name="button">Login</button>
+  </form>
+</div>
+
+<!-- REGISTER -->
+<div ng-if="user.registerDisplay">
+  <form>
+    <input type="text" name="" placeholder="username">
+    <input type="password" name="" placeholder="password"><br/>
+    <input type="password" name="" placeholder="confirm password"><br/>
+    <button class="btn-default" type="button" name="button">Register</button>
+  </form>
+</div>
