@@ -13,8 +13,8 @@
   <body ng-controller="userController as user">
     <nav class="nav">
       <ul>
-        <li>login</li>
-        <li>register</li>
+        <li ng-click="user.toggleLogin()">login</li>
+        <li ng-click="user.toggleRegister()">register</li>
         <li>logout</li>
       </ul>
     </nav>

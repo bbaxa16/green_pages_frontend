@@ -1,7 +1,7 @@
 <!-- LOGIN AND REGISTER FORMS -->
 
 <!-- LOGIN -->
-<div ng-if="user.loginDisplay">
+<div class="container text-center" ng-if="user.loginDisplay">
   <form>
     <input type="text" name="" placeholder="username">
     <input type="text" name="" placeholder="password"><br/>
@@ -10,10 +10,10 @@
 </div>
 
 <!-- REGISTER -->
-<div ng-if="user.registerDisplay">
+<div class="container text-center" ng-if="user.registerDisplay">
   <form>
     <input type="text" name="" placeholder="username">
-    <input type="password" name="" placeholder="password"><br/>
+    <input type="password" name="" placeholder="password">
     <input type="password" name="" placeholder="confirm password"><br/>
     <button class="btn-default" type="button" name="button">Register</button>
   </form>
