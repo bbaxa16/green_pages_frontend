@@ -58,7 +58,7 @@ app.controller('userController', ['$http', function(http){
     $http({
       method: 'PUT',
       url: this.url + '/users/' + id,
-      data: this.updatedUser;
+      data: this.updatedUser
     }).then(function(response){
       console.log(response);
     }, function(err){

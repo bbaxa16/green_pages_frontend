@@ -12,12 +12,14 @@
     <title>green pages</title>
   </head>
   <body ng-controller="userController as user">
-    <nav class="nav">
-      <ul>
-        <li ng-click="user.toggleLogin()">login</li>
-        <li ng-click="user.toggleRegister()">register</li>
-        <li ng-click="user.logout()">logout</li>
-      </ul>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="site-nab">
+        <ul class="nav nabvar-right">
+          <li ng-click="user.toggleLogin()">login</li> |
+          <li ng-click="user.toggleRegister()">register</li> |
+          <li ng-click="user.logout()">logout</li>
+        </ul>
+      </div>
     </nav>
   <header class="jumbotron text-center">
     <h1>green pages</h1>
