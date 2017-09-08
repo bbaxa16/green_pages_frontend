@@ -9,7 +9,7 @@ app.controller('userController', ['$http', function($http){
   const controller = this;
   this.loginDisplay = false;
   this.registerDisplay = false;
-  // this.logged = false;
+  // this.logged = true;
   this.url = 'http://localhost:3000';
   //Functions to change displays on the DOM
   this.toggleRegister = function(){
@@ -39,20 +39,6 @@ app.controller('userController', ['$http', function($http){
       console.log(response);
     })
   }
-  this.login = function(userJWT){
-    //console.log(userJWT);
-    $http({
-      method: 'POST',
-      url: this.url + '/users/login',
-      data: { user: { username: userJWT.username, password: userJWT.password }},
-    }).then(function(response){
-      this.user = response.data.user;
-      this.token = response.data.token;
-      localStorage.setItem('token', JSON.stringify(response.data.token));
-      console.log(localStorage.token);
-      console.log(response);  
-    }.bind(this));
-  }
   this.getUsers = function(){
     $http({
       url: this.url + '/users',
@@ -65,8 +51,23 @@ app.controller('userController', ['$http', function($http){
       if(response.data.status == 401){
       this.error = 'Unauthorized';
       } else {
+      this.logged = true;
       this.users = response.data;
       }
+    }.bind(this));
+  }
+  this.login = function(userJWT){
+    $http({
+      method: 'POST',
+      url: this.url + '/users/login',
+      data: { user: { username: userJWT.username, password: userJWT.password }},
+    }).then(function(response){
+      this.user = response.data.user;
+      this.token = response.data.token;
+      localStorage.setItem('token', JSON.stringify(response.data.token));
+      console.log(localStorage.token);
+      console.log(response);
+      this.getUsers();
     }.bind(this));
   }
   this.logout = function(){
@@ -97,4 +98,5 @@ app.controller('userController', ['$http', function($http){
       console.log(err);
     })
   }
+  this.getUsers();
 }]);

@@ -28,7 +28,7 @@
     </nav>
     <div class="">
       <button  ng-click="user.getUsers()">get users</button>
-    
+
       <div class="">
         <h1>{{user.users.username}}</h1>
       </div>
@@ -42,7 +42,7 @@
   </header>
   <section ng-include="'./forms.html'"></section>
   <h1>{{localStorage.token}}</h1>
-  <div class="jumbotron" ng-if='user.localStorage.token'>
+  <div class="jumbotron" ng-if='user.logged'>
     <h1>can only see when logged</h1>
 
 
