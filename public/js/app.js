@@ -22,7 +22,34 @@ app.controller('userController', ['$http', function(http){
       this.loginDisplay = !this.loginDisplay;
     }
   }
+  this.register = function(userRegister){
+    $http({
+      method: 'POST',
+      url: this.url + '/users/register',
+      data: { user: {
+        username: userRegister.username,
+        password: userRegister.password
+      }},
+    }).then(function(response) {
+      console.log(response);
+    })
+  }
   this.login = function(userJWT){
     console.log(userJWT);
+    $http({
+      method: 'POST',
+      url: this.url + '/users/login',
+      data: { user: { username: userJWT.username, password: userJWT.password }},
+    }).then(function(response){
+      console.log(response);
+      this.user = response.data.user;
+      localStorage.setItem('token', JSON.stringify(response.data.token));
+    }.bind(this));
   }
+  this.logout = function(){
+    localStorage.clear('token');
+    location.reload();
+    console.log('successful logout');
+  }
+
 }]);
