@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app='green-pages'>
+  <head>
+    <meta charset="utf-8">
+    <!-- style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/main.css">
+    <!-- script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js" charset="utf-8"></script>
+    <script src="./js/app.js" charset="utf-8"></script>
+    <title>green pages</title>
+  </head>
+  <body ng-controller="mainController as ctrl">
+    <nav class="nav">
+      <ul>
+        <li>login</li>
+        <li>register</li>
+        <li>logout</li>
+      </ul>
+    </nav>
+  <header class="jumbotron text-center">
+    <h1>green pages</h1>
+    <h5>{{ctrl.message}}</h5>
+  </header>
+  </body>
+  <footer></footer>
+</html>
