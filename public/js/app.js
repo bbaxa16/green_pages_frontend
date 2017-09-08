@@ -9,6 +9,7 @@ app.controller('userController', ['$http', function($http){
   const controller = this;
   this.loginDisplay = false;
   this.registerDisplay = false;
+  this.logged = false;
   this.url = 'http://localhost:3000';
   //Functions to change displays on the DOM
   this.toggleRegister = function(){
@@ -48,12 +49,14 @@ app.controller('userController', ['$http', function($http){
       console.log(response);
       this.user = response.data.user;
       localStorage.setItem('token', JSON.stringify(response.data.token));
+      this.logged = true;
     }.bind(this));
   }
   this.logout = function(){
     localStorage.clear('token');
     location.reload();
     console.log('successful logout');
+    this.logged = false;
   }
   this.update = function(id){
     $http({

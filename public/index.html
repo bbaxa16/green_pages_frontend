@@ -12,22 +12,28 @@
     <title>green pages</title>
   </head>
   <body ng-controller="userController as user">
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="site-nav">
-        <ul class="nav nabvar-right">
-          <li ng-click="user.toggleLogin()">login</li> |
-          <li ng-click="user.toggleRegister()">register</li> |
-          <li ng-click="user.logout()">logout</li>
-        </ul>
+
+    <nav class="navbar navbar-inverse navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="site-nav">
+          <a href="#" class="navbar-brand"><img class="logo" src="./css/assets/greenpages2.png"/></a>
+          <ul class="nav nabvar-right">
+            <li ng-click="user.toggleLogin()">login</li> |
+            <li ng-click="user.toggleRegister()">register</li> |
+            <li ng-click="user.logout()">logout</li>
+          </ul>
+        </div>
       </div>
     </nav>
   <header class="jumbotron text-center">
     <h1>green pages</h1>
     <h5>{{user.message}}</h5>
   </header>
-  <section ng-include="'./forms.html'">
+  <section ng-include="'./forms.html'"></section>
+  <div class="jumbotron" ng-if='user.logged'>
+    <h1>can only see when logged</h1>
 
-  </section>
+  </div>
   </body>
   <footer></footer>
 </html>
