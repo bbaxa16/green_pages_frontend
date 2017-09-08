@@ -9,7 +9,7 @@ app.controller('userController', ['$http', function($http){
   const controller = this;
   this.loginDisplay = false;
   this.registerDisplay = false;
-  this.logged = false;
+  // this.logged = false;
   this.url = 'http://localhost:3000';
   //Functions to change displays on the DOM
   this.toggleRegister = function(){
@@ -40,16 +40,33 @@ app.controller('userController', ['$http', function($http){
     })
   }
   this.login = function(userJWT){
-    console.log(userJWT);
+    //console.log(userJWT);
     $http({
       method: 'POST',
       url: this.url + '/users/login',
       data: { user: { username: userJWT.username, password: userJWT.password }},
     }).then(function(response){
-      console.log(response);
       this.user = response.data.user;
+      this.token = response.data.token;
       localStorage.setItem('token', JSON.stringify(response.data.token));
-      this.logged = true;
+      console.log(localStorage.token);
+      console.log(response);  
+    }.bind(this));
+  }
+  this.getUsers = function(){
+    $http({
+      url: this.url + '/users',
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+      }
+    }).then(function(response){
+      console.log(response);
+      if(response.data.status == 401){
+      this.error = 'Unauthorized';
+      } else {
+      this.users = response.data;
+      }
     }.bind(this));
   }
   this.logout = function(){
