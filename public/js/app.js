@@ -4,11 +4,12 @@ const app = angular.module('green-pages', []);
 //USERS controller
 /////////////////
 
-app.controller('userController', ['$http', function(http){
+app.controller('userController', ['$http', function($http){
   this.message = 'puff, puff, pass';
   const controller = this;
   this.loginDisplay = false;
   this.registerDisplay = false;
+  this.url = 'http://localhost:3000';
   //Functions to change displays on the DOM
   this.toggleRegister = function(){
     if(this.loginDisplay) {
@@ -28,7 +29,7 @@ app.controller('userController', ['$http', function(http){
   this.register = function(userRegister){
     $http({
       method: 'POST',
-      url: this.url + '/users/register',
+      url: this.url + '/users/',
       data: { user: {
         username: userRegister.username,
         password: userRegister.password
