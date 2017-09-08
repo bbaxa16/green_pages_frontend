@@ -10,7 +10,7 @@
     <script src="./js/app.js" charset="utf-8"></script>
     <title>green pages</title>
   </head>
-  <body ng-controller="userController as ctrl">
+  <body ng-controller="userController as user">
     <nav class="nav">
       <ul>
         <li>login</li>
@@ -22,6 +22,9 @@
     <h1>green pages</h1>
     <h5>{{user.message}}</h5>
   </header>
+  <section ng-include="'./forms.html'">
+
+  </section>
   </body>
   <footer></footer>
 </html>
