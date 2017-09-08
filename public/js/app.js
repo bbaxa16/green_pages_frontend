@@ -22,4 +22,7 @@ app.controller('userController', ['$http', function(http){
       this.loginDisplay = !this.loginDisplay;
     }
   }
+  this.login = function(userJWT){
+    console.log(userJWT);
+  }
 }]);

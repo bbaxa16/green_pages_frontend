@@ -2,10 +2,10 @@
 
 <!-- LOGIN -->
 <div class="container text-center" ng-if="user.loginDisplay">
-  <form>
-    <input type="text" name="" placeholder="username">
-    <input type="text" name="" placeholder="password"><br/>
-    <button class="btn-default" type="button" name="button">Login</button>
+  <form ng-submit="user.login(userJWT)">
+    <input type="text" ng-model="userJWT.username" placeholder="username">
+    <input type="password" ng-model="userJWT.password" placeholder="password"><br/>
+    <button class="btn-default" type="submit" name="button">Login</button>
   </form>
 </div>
 
