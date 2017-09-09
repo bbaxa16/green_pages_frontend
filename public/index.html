@@ -6,8 +6,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/main.css">
     <!-- script -->
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
     <script src="https://use.fontawesome.com/af5dc9ce4b.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js" charset="utf-8"></script>
+    <script src="./js/dom.js" charset="utf-8"></script>
     <script src="./js/app.js" charset="utf-8"></script>
     <title>green pages</title>
   </head>
@@ -28,8 +33,34 @@
     </nav>
     <h1>{{user.user.username}}</h1>
   <header ng-if="user.userDisplay === false;"class="jumbotron text-center">
-    <h1>green pages</h1>
-    <h5>{{user.message}}</h5>
+    <section class="demo">
+  <button class="next">Next</button>
+  <button class="prev">Previous</button>
+  <div class="container">
+    <div style="display: inline-block;">
+      <img src="https://www.marijuana.com/wp-content/uploads/2017/01/blackbeauty-3-1024x663.jpg"/>
+    </div>
+    <div>
+     <img src="https://www.marijuana.com/wp-content/uploads/2016/10/tko_gorilla_glue_4.jpg"/>
+    </div>
+    <div>
+      <img src="https://www.marijuana.com/wp-content/uploads/2016/10/d45812717867fc6e464ca49fab45b595-1024x976.jpg"/>
+    </div>
+    <div>
+      <img src="https://www.marijuana.com/wp-content/uploads/2016/09/facewreck-1024x877.jpg"/>
+    </div>
+    <div>
+      <img src="https://www.marijuana.com/wp-content/uploads/2016/09/dedbd4087f76e9523ca3ed360dddc999-1024x684.jpg"/>
+    </div>
+    <div>
+      <img src="https://www.marijuana.com/wp-content/uploads/2016/08/Grape-Krush-1024x682.jpg"/>
+    </div>
+    <div>
+      <img src="https://www.marijuana.com/wp-content/uploads/2016/08/strawberry-cough-800x533.jpg"/>
+    </div>
+  </div>
+</section>
+
   </header>
   <section ng-include="'./forms.html'"></section>
   <section ng-include="'./user.html'" ng-if="user.userDisplay"></section>
