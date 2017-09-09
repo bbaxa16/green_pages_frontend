@@ -105,4 +105,20 @@ app.controller('userController', ['$http', function($http){
     })
   }
   this.getUsers();
+  //created infinite loop
+  // $(()=>{
+  //   if(window.location.reload()){
+  //     controller.getUsers();
+  //     console.log('success reload');
+  //   }
+  // });
+
+  //call function right away
+  //this.getUsers();
+
+  //didn't work
+  //window.onload = this.getUsers()
+
+  //didn't work
+  //window.onbeforeunload = this.getUsers()
 }]);
