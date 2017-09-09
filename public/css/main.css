@@ -15,11 +15,18 @@ nav ul {
   list-style-type: none;
 }
 
+.nav-btn:hover {
+  color: darkgrey;
+  cursor: pointer;
+}
+
 .logo {
   width: 25%;
   height: 25%;
 }
-
+li {
+  display: inline-block;
+}
 footer {
   bottom: 0;
   width: 100%;

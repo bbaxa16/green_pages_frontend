@@ -14,6 +14,9 @@ app.controller('userController', ['$http', function($http){
   // this.logged = true;
   this.url = 'http://localhost:3000';
   //Functions to change displays on the DOM
+  this.phoneHome = function(){
+    this.userDisplay = false;
+  }
   this.toggleRegister = function(){
     if(this.loginDisplay) {
     }
