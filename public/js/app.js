@@ -7,8 +7,10 @@ const app = angular.module('green-pages', []);
 app.controller('userController', ['$http', function($http){
   this.message = 'puff, puff, pass';
   const controller = this;
+  this.user = {};
   this.loginDisplay = false;
   this.registerDisplay = false;
+  this.userDisplay = false;
   // this.logged = true;
   this.url = 'http://localhost:3000';
   //Functions to change displays on the DOM
@@ -25,6 +27,9 @@ app.controller('userController', ['$http', function($http){
     else {
       this.loginDisplay = !this.loginDisplay;
     }
+  }
+  this.toggleUser = function(){
+    this.userDisplay = !this.userDisplay;
   }
   //AJAX REQUESTS
   this.register = function(userRegister){
@@ -67,6 +72,7 @@ app.controller('userController', ['$http', function($http){
       localStorage.setItem('token', JSON.stringify(response.data.token));
       console.log(localStorage.token);
       console.log(response);
+      this.loginDisplay = false;
       this.getUsers();
     }.bind(this));
   }

@@ -20,33 +20,23 @@
           <ul class="nav nabvar-right">
             <li ng-hide='user.logged'ng-click="user.toggleLogin()">login</li>
             <li ng-hide='user.logged' ng-click="user.toggleRegister()"> register</li>
-            <li ng-show="user.logged">{{user.user.username}}</li>
-            <li ng-click="user.logout()">logout</li>
+            <li ng-show="user.logged" ng-click="user.toggleUser()">{{user.user.username}}</li>
+            <li ng-show="user.logged" ng-click="user.logout()">logout</li>
           </ul>
         </div>
       </div>
     </nav>
-    <div class="">
-      <button  ng-click="user.getUsers()">get users</button>
-
-      <div class="">
-        <h1>{{user.users.username}}</h1>
-      </div>
-      <h1>localStorage = {{user.token}}</h1>
-      <h5> user id {{user.user.id}}</h5>
-    </div>
-  <header class="jumbotron text-center">
+    <h1>{{user.user.username}}</h1>
+  <header ng-if="user.userDisplay === false;"class="jumbotron text-center">
     <h1>green pages</h1>
     <h5>{{user.message}}</h5>
-    <h5>user: {{user.username}}</h5>
   </header>
   <section ng-include="'./forms.html'"></section>
-  <h1>{{localStorage.token}}</h1>
-  <div class="jumbotron" ng-if='user.logged'>
-    <h1>can only see when logged</h1>
-
-
-  </div>
+  <section ng-include="'./user.html'" ng-if="user.userDisplay"></section>
   </body>
-  <footer></footer>
+  <footer class="footer">
+    <div class="container">
+      <p>Made with &hearts; by Brooke Baxa and James Joo</p>
+    </div>
+  </footer>
 </html>
