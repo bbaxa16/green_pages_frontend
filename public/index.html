@@ -12,22 +12,31 @@
     <title>green pages</title>
   </head>
   <body ng-controller="userController as user">
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="site-nav">
-        <ul class="nav nabvar-right">
-          <li ng-click="user.toggleLogin()">login</li> |
-          <li ng-click="user.toggleRegister()">register</li> |
-          <li ng-click="user.logout()">logout</li>
-        </ul>
+
+    <nav class="navbar navbar-inverse navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="site-nav">
+          <a href="#" class="navbar-brand"><img class="logo" src="./css/assets/greenpages2.png"/></a>
+          <ul class="nav nabvar-right">
+            <li ng-hide='user.logged'ng-click="user.toggleLogin()">login</li>
+            <li ng-hide='user.logged' ng-click="user.toggleRegister()"> register</li>
+            <li ng-show="user.logged" ng-click="user.toggleUser()">{{user.user.username}}</li>
+            <li ng-show="user.logged" ng-click="user.logout()">logout</li>
+          </ul>
+        </div>
       </div>
     </nav>
-  <header class="jumbotron text-center">
+    <h1>{{user.user.username}}</h1>
+  <header ng-if="user.userDisplay === false;"class="jumbotron text-center">
     <h1>green pages</h1>
     <h5>{{user.message}}</h5>
   </header>
-  <section ng-include="'./forms.html'">
-
-  </section>
+  <section ng-include="'./forms.html'"></section>
+  <section ng-include="'./user.html'" ng-if="user.userDisplay"></section>
   </body>
-  <footer></footer>
+  <footer class="footer">
+    <div class="container">
+      <p>Made with &hearts; by Brooke Baxa and James Joo</p>
+    </div>
+  </footer>
 </html>

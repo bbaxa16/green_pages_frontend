@@ -1,8 +1,31 @@
 nav {
-  background: #3F6A4F;
+  background: #7F828F;
   color: #FFFFFF;
+  width: 100%;
 }
-.navbar-right li {
+.site-nav {
+  width: 100%;
+}
+nav ul {
+  float: right;
+}
+.navbar-nav li {
   display: inline-block;
   list-style-type: none;
+}
+.logo {
+  width: 25%;
+  height: 25%;
+}
+
+footer {
+  bottom: 0;
+  width: 100%;
+  background-color: #7F828F;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 30%;
+  padding: 1%;
+
 }
