@@ -33,6 +33,7 @@ app.controller('userController', ['$http', function($http){
   }
   this.toggleUser = function(){
     this.userDisplay = !this.userDisplay;
+    this.getUsers();
   }
   //AJAX REQUESTS
   this.register = function(userRegister){
