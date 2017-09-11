@@ -5,15 +5,11 @@ const app = angular.module('green-pages', []);
 /////////////////
 
 app.controller('userController', ['$http', function($http){
-  this.message = 'puff, puff, pass';
   const controller = this;
-  this.token = '';
-  this.username = localStorage.username.replace(/"/g,"")
   this.loginDisplay = false;
   this.registerDisplay = false;
   this.userDisplay = false;
   this.editDisplay = false;
-  // this.logged = true;
   this.url = 'http://localhost:3000';
   //Functions to change displays on the DOM
   this.phoneHome = function(){
@@ -62,11 +58,12 @@ app.controller('userController', ['$http', function($http){
         Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
       }
     }).then(function(response){
-      //console.log(response);
       if(response.data.status == 401){
       this.error = 'Unauthorized';
       } else {
       this.logged = true;
+      this.username = localStorage.username.replace(/"/g,"")
+      this.id = localStorage.id.replace(/"/g,"")
       }
     }.bind(this));
   }
@@ -78,11 +75,20 @@ app.controller('userController', ['$http', function($http){
     }).then(function(response){
       localStorage.setItem('token', JSON.stringify(response.data.token));
       localStorage.setItem('username', JSON.stringify(response.data.user.username));
+      localStorage.setItem('id', JSON.stringify(response.data.user.id));
       this.loginDisplay = false;
-      this.token = localStorage.token
       this.getUsers();
     }.bind(this));
   }
+  // this.setUser = function(id){
+  //   $http({
+  //     method: 'GET',
+  //     url: this.url + '/users/' + id,
+  //     data: this.currentUser
+  //   }).then(function(response){
+  //     console.log(response);
+  //   }.bind(this));
+  // }
   this.logout = function(){
     localStorage.clear('token');
     location.reload();
@@ -90,12 +96,14 @@ app.controller('userController', ['$http', function($http){
     this.logged = false;
   }
   this.update = function(id){
+    this.getUsers();
     $http({
       method: 'PUT',
       url: this.url + '/users/' + id,
       data: this.updatedUser
     }).then(function(response){
       console.log(response);
+      controller.getUsers();
     }, function(err){
       console.log(err);
     })
@@ -112,20 +120,4 @@ app.controller('userController', ['$http', function($http){
     })
   }
   this.getUsers();
-  //created infinite loop
-  // $(()=>{
-  //   if(window.location.reload()){
-  //     controller.getUsers();
-  //     console.log('success reload');
-  //   }
-  // });
-
-  //call function right away
-  //this.getUsers();
-
-  //didn't work
-  //window.onload = this.getUsers()
-
-  //didn't work
-  //window.onbeforeunload = this.getUsers()
 }]);
