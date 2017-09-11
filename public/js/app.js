@@ -7,10 +7,12 @@ const app = angular.module('green-pages', []);
 app.controller('userController', ['$http', function($http){
   this.message = 'puff, puff, pass';
   const controller = this;
-  this.user = {};
+  this.token = '';
+  this.username = localStorage.username.replace(/"/g,"")
   this.loginDisplay = false;
   this.registerDisplay = false;
   this.userDisplay = false;
+  this.editDisplay = false;
   // this.logged = true;
   this.url = 'http://localhost:3000';
   //Functions to change displays on the DOM
@@ -35,6 +37,10 @@ app.controller('userController', ['$http', function($http){
     this.userDisplay = !this.userDisplay;
     this.getUsers();
   }
+  this.toggleEdit = function(){
+    this.editDisplay = !this.editDisplay
+    this.getUsers();
+  }
   //AJAX REQUESTS
   this.register = function(userRegister){
     $http({
@@ -56,12 +62,11 @@ app.controller('userController', ['$http', function($http){
         Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
       }
     }).then(function(response){
-      console.log(response);
+      //console.log(response);
       if(response.data.status == 401){
       this.error = 'Unauthorized';
       } else {
       this.logged = true;
-      this.users = response.data;
       }
     }.bind(this));
   }
@@ -71,12 +76,10 @@ app.controller('userController', ['$http', function($http){
       url: this.url + '/users/login',
       data: { user: { username: userJWT.username, password: userJWT.password }},
     }).then(function(response){
-      this.user = response.data.user;
-      this.token = response.data.token;
       localStorage.setItem('token', JSON.stringify(response.data.token));
-      console.log(localStorage.token);
-      console.log(response);
+      localStorage.setItem('username', JSON.stringify(response.data.user.username));
       this.loginDisplay = false;
+      this.token = localStorage.token
       this.getUsers();
     }.bind(this));
   }
