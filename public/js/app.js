@@ -64,6 +64,7 @@ app.controller('userController', ['$http', function($http){
       this.logged = true;
       this.username = localStorage.username.replace(/"/g,"")
       this.id = localStorage.id.replace(/"/g,"")
+      console.log(localStorage.token);
       }
     }.bind(this));
   }
@@ -80,15 +81,21 @@ app.controller('userController', ['$http', function($http){
       this.getUsers();
     }.bind(this));
   }
-  // this.setUser = function(id){
-  //   $http({
-  //     method: 'GET',
-  //     url: this.url + '/users/' + id,
-  //     data: this.currentUser
-  //   }).then(function(response){
-  //     console.log(response);
-  //   }.bind(this));
-  // }
+  this.setUser = function(id){
+    console.log('set user being ran');
+    $http({
+      method: 'GET',
+      url: this.url + '/users/' + id,
+      headers: {
+  Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+}
+    }).then(function(response){
+      console.log('this is the setuser response');
+      console.log(response);
+    }, function(err){
+      console.log(err);
+    })
+    }
   this.logout = function(){
     localStorage.clear('token');
     location.reload();
@@ -121,3 +128,23 @@ app.controller('userController', ['$http', function($http){
   }
   this.getUsers();
 }]);
+
+
+
+
+//strains controller
+app.controller('strainController', ['$http', function($http){
+this.url = 'http://localhost:3000';
+const controller = this;
+this.getStrains = function(){
+  $http({
+    method: 'GET',
+    url: this.url + '/strains'
+  }).then(function(response){
+    controller.weed = response.data;
+  }, function(err){
+    console.log(err);
+  })
+}
+this.getStrains();
+}])

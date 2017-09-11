@@ -34,6 +34,13 @@
         </div>
       </div>
     </nav>
+    <button ng-click="user.setUser(user.id)">set user</button>
+
+    <section ng-controller='strainController as strain'>
+      <div ng-repeat='w in strain.weed'>
+        <h1>{{w.name}}</h1>
+      </div>
+    </section>
     <!--Login Modal -->
     <div id='loginmodal' ng-if='user.loginDisplay'>
       <div class='modal-dialog' role='document'>
