@@ -26,7 +26,7 @@
           <ul class="nav nabvar-right">
             <li class="nav-btn" ng-hide='user.logged'ng-click="user.toggleLogin()">login</li>
             <li class="nav-btn" ng-hide='user.logged' ng-click="user.toggleRegister()"> register</li>
-            <li class="nav-btn" ng-show="user.logged" ng-click="user.toggleUser()">
+            <li class="nav-btn" ng-show="user.logged"  ng-click='user.setUser(user.id)'>
               <i class="fa fa-user-o" aria-hidden="true"></i>
             </li>
             <li class="nav-btn" ng-show="user.logged" ng-click="user.logout()">logout</li>
@@ -34,13 +34,6 @@
         </div>
       </div>
     </nav>
-    <button ng-click="user.setUser(user.id)">set user</button>
-
-    <section ng-controller='strainController as strain'>
-      <div ng-repeat='w in strain.weed'>
-        <h1>{{w.name}}</h1>
-      </div>
-    </section>
     <!--Login Modal -->
     <div id='loginmodal' ng-if='user.loginDisplay'>
       <div class='modal-dialog' role='document'>

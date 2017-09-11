@@ -14,7 +14,7 @@
 <div class='tab-content'>
 
 <div id='edit' role='tabpanel' ng-if='user.editDisplay'>
-  <form ng-submit="user.update(user.id)">
+  <form ng-submit="user.update(1)">
     <input type="text" ng-model="user.updatedUser.username" placeholder="username">
     <input type="password" ng-model="user.updatedUser.password" placeholder="password"><br/>
     <br/>
