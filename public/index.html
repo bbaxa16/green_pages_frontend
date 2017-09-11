@@ -34,6 +34,48 @@
         </div>
       </div>
     </nav>
+    <!--Login Modal -->
+    <div id='loginmodal' ng-if='user.loginDisplay'>
+      <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <!-- Close Button -->
+              <span class="text-top"><button class='btn btn-default' id='closebtn' ng-click='user.toggleLogin()'>X</button></span>
+              <div class='modal-body'>
+                <div class="container text-center" ng-if="user.loginDisplay">
+                  <form ng-submit="user.login(userJWT)">
+                    <input type="text" ng-model="userJWT.username" placeholder="username"></br>
+                    <input type="password" ng-model="userJWT.password" placeholder="password"><br/>
+                    <button class="btn btn-primary" type="submit" name="button">Login</button>
+                  </form>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Register Modal -->
+    <div id='registermodal' ng-if='user.registerDisplay'>
+      <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <!-- Close Button -->
+              <span class="text-top"><button class='btn btn-default' id='closebtn' ng-click='user.toggleRegister()'>X</button></span>
+              <div class='modal-body'>
+                <div class="container text-center">
+                  <form ng-submit="user.register(userRegister)">
+                    <input type="text" ng-model="userRegister.username" placeholder="username">
+                    <input type="password" ng-model="userRegister.password" placeholder="password">
+                    <!-- not sure exactly how to run the confirm password thing -->
+                    <!-- <input type="password" ng-model="userRegister.password" placeholder="confirm password"><br/> -->
+                    <button class="btn btn-primary" type="submit">Register</button>
+                  </form>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- determines show page for landing -->
     <section ng-if="user.userDisplay === false;">
       <!-- header -->
@@ -43,7 +85,7 @@
        <button class="next">Next</button>
       <button class="prev">Previous</button> -->
       <div class="container">
-        <!-- slideshow -->
+        <!-- Slideshow -->
         <div style="display: inline-block;" class="puffnpass">
           <img src="https://www.marijuana.com/wp-content/uploads/2017/01/blackbeauty-3-1024x663.jpg"/>
           <p>Black Beauty</p>
@@ -75,8 +117,8 @@
       </div>
     </section>
       </header>
-  </section>
-      <section ng-include="'./forms.html'"></section>
+  </section> <!-- end of landing page -->
+      <!-- <section ng-include="'./forms.html'"></section> -->
   <section ng-include="'./user.html'" ng-if="user.userDisplay"></section>
   </body>
   <footer class="footer">

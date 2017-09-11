@@ -27,6 +27,23 @@ nav ul {
 .puffnpass {
   display: inline-block;
 }
+
+#loginmodal, #registermodal {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  z-index: 100;
+  overflow: hidden;
+}
+
+#modal-title {
+  display: inline-block;
+}
+
+#closebtn {
+  float: right;
+}
+
 footer {
   bottom: 0;
   width: 100%;
@@ -36,7 +53,6 @@ footer {
   text-align: center;
   margin-top: 30%;
   padding: 1%;
-
 }
 
 .container {
