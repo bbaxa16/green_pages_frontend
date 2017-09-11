@@ -9,13 +9,39 @@ nav {
 nav ul {
   float: right;
 }
-.navbar-nav li {
+.nav-btn {
+  margin: 5px;
   display: inline-block;
   list-style-type: none;
 }
+
+.nav-btn:hover {
+  color: darkgrey;
+  cursor: pointer;
+}
+
 .logo {
   width: 25%;
   height: 25%;
+}
+.puffnpass {
+  display: inline-block;
+}
+
+#loginmodal, #registermodal {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  z-index: 100;
+  overflow: hidden;
+}
+
+#modal-title {
+  display: inline-block;
+}
+
+#closebtn {
+  float: right;
 }
 
 footer {
@@ -27,26 +53,25 @@ footer {
   text-align: center;
   margin-top: 30%;
   padding: 1%;
-
 }
 
 .container {
   max-width: 400px;
-  background-color: black;
   margin: 0 auto;
   text-align: center;
   position: relative;
 }
 .container div {
-  background-color: white;
   width: 100%;
   display: inline-block;
   display: none;
 }
 .container img {
   width: 100%;
-  height: auto;
+  height: 80%;
 }
+
+/* uncomment if you want to see buttons for slideshow
 
 button {
   position: absolute;
@@ -58,4 +83,4 @@ button {
 
 .prev {
   left: 5px;
-}
+}*/

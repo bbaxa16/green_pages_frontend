@@ -5,15 +5,16 @@ const app = angular.module('green-pages', []);
 /////////////////
 
 app.controller('userController', ['$http', function($http){
-  this.message = 'puff, puff, pass';
   const controller = this;
-  this.user = {};
   this.loginDisplay = false;
   this.registerDisplay = false;
   this.userDisplay = false;
-  // this.logged = true;
+  this.editDisplay = false;
   this.url = 'http://localhost:3000';
   //Functions to change displays on the DOM
+  this.phoneHome = function(){
+    this.userDisplay = false;
+  }
   this.toggleRegister = function(){
     if(this.loginDisplay) {
     }
@@ -30,6 +31,11 @@ app.controller('userController', ['$http', function($http){
   }
   this.toggleUser = function(){
     this.userDisplay = !this.userDisplay;
+    this.getUsers();
+  }
+  this.toggleEdit = function(){
+    this.editDisplay = !this.editDisplay
+    this.getUsers();
   }
   //AJAX REQUESTS
   this.register = function(userRegister){
@@ -52,12 +58,13 @@ app.controller('userController', ['$http', function($http){
         Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
       }
     }).then(function(response){
-      console.log(response);
       if(response.data.status == 401){
       this.error = 'Unauthorized';
       } else {
       this.logged = true;
-      this.users = response.data;
+      this.username = localStorage.username.replace(/"/g,"")
+      this.id = localStorage.id.replace(/"/g,"")
+      console.log(localStorage.token);
       }
     }.bind(this));
   }
@@ -67,15 +74,28 @@ app.controller('userController', ['$http', function($http){
       url: this.url + '/users/login',
       data: { user: { username: userJWT.username, password: userJWT.password }},
     }).then(function(response){
-      this.user = response.data.user;
-      this.token = response.data.token;
       localStorage.setItem('token', JSON.stringify(response.data.token));
-      console.log(localStorage.token);
-      console.log(response);
+      localStorage.setItem('username', JSON.stringify(response.data.user.username));
+      localStorage.setItem('id', JSON.stringify(response.data.user.id));
       this.loginDisplay = false;
       this.getUsers();
     }.bind(this));
   }
+  this.setUser = function(id){
+    console.log('set user being ran');
+    $http({
+      method: 'GET',
+      url: this.url + '/users/' + id,
+      headers: {
+  Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+}
+    }).then(function(response){
+      console.log('this is the setuser response');
+      console.log(response);
+    }, function(err){
+      console.log(err);
+    })
+    }
   this.logout = function(){
     localStorage.clear('token');
     location.reload();
@@ -83,12 +103,14 @@ app.controller('userController', ['$http', function($http){
     this.logged = false;
   }
   this.update = function(id){
+    this.getUsers();
     $http({
       method: 'PUT',
       url: this.url + '/users/' + id,
       data: this.updatedUser
     }).then(function(response){
       console.log(response);
+      controller.getUsers();
     }, function(err){
       console.log(err);
     })
@@ -106,3 +128,23 @@ app.controller('userController', ['$http', function($http){
   }
   this.getUsers();
 }]);
+
+
+
+
+//strains controller
+app.controller('strainController', ['$http', function($http){
+this.url = 'http://localhost:3000';
+const controller = this;
+this.getStrains = function(){
+  $http({
+    method: 'GET',
+    url: this.url + '/strains'
+  }).then(function(response){
+    controller.weed = response.data;
+  }, function(err){
+    console.log(err);
+  })
+}
+this.getStrains();
+}])

@@ -15,54 +15,117 @@
     <script src="./js/dom.js" charset="utf-8"></script>
     <script src="./js/app.js" charset="utf-8"></script>
     <title>green pages</title>
+    <link rel='icon' href='./css/assets/gplogog.png'>
   </head>
   <body ng-controller="userController as user">
-
+    <!-- navbar -->
     <nav class="navbar navbar-inverse navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="site-nav">
-          <a href="#" class="navbar-brand"><img class="logo" src="./css/assets/greenpages2.png"/></a>
+          <a href="#" class="navbar-brand" ng-click="user.phoneHome()"><img class="logo" src="./css/assets/greenpages2.png"/></a>
           <ul class="nav nabvar-right">
-            <li ng-hide='user.logged'ng-click="user.toggleLogin()">login</li>
-            <li ng-hide='user.logged' ng-click="user.toggleRegister()"> register</li>
-            <li ng-show="user.logged" ng-click="user.toggleUser()">{{user.user.username}}</li>
-            <li ng-show="user.logged" ng-click="user.logout()">logout</li>
+            <li class="nav-btn" ng-hide='user.logged'ng-click="user.toggleLogin()">login</li>
+            <li class="nav-btn" ng-hide='user.logged' ng-click="user.toggleRegister()"> register</li>
+            <li class="nav-btn" ng-show="user.logged" ng-click="user.toggleUser()">
+              <i class="fa fa-user-o" aria-hidden="true"></i>
+            </li>
+            <li class="nav-btn" ng-show="user.logged" ng-click="user.logout()">logout</li>
           </ul>
         </div>
       </div>
     </nav>
-    <h1>{{user.user.username}}</h1>
-  <header ng-if="user.userDisplay === false;"class="jumbotron text-center">
-    <section class="demo">
-  <button class="next">Next</button>
-  <button class="prev">Previous</button>
-  <div class="container">
-    <div style="display: inline-block;">
-      <img src="https://www.marijuana.com/wp-content/uploads/2017/01/blackbeauty-3-1024x663.jpg"/>
-    </div>
-    <div>
-     <img src="https://www.marijuana.com/wp-content/uploads/2016/10/tko_gorilla_glue_4.jpg"/>
-    </div>
-    <div>
-      <img src="https://www.marijuana.com/wp-content/uploads/2016/10/d45812717867fc6e464ca49fab45b595-1024x976.jpg"/>
-    </div>
-    <div>
-      <img src="https://www.marijuana.com/wp-content/uploads/2016/09/facewreck-1024x877.jpg"/>
-    </div>
-    <div>
-      <img src="https://www.marijuana.com/wp-content/uploads/2016/09/dedbd4087f76e9523ca3ed360dddc999-1024x684.jpg"/>
-    </div>
-    <div>
-      <img src="https://www.marijuana.com/wp-content/uploads/2016/08/Grape-Krush-1024x682.jpg"/>
-    </div>
-    <div>
-      <img src="https://www.marijuana.com/wp-content/uploads/2016/08/strawberry-cough-800x533.jpg"/>
-    </div>
-  </div>
-</section>
+    <button ng-click="user.setUser(user.id)">set user</button>
 
-  </header>
-  <section ng-include="'./forms.html'"></section>
+    <section ng-controller='strainController as strain'>
+      <div ng-repeat='w in strain.weed'>
+        <h1>{{w.name}}</h1>
+      </div>
+    </section>
+    <!--Login Modal -->
+    <div id='loginmodal' ng-if='user.loginDisplay'>
+      <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <!-- Close Button -->
+              <span class="text-top"><button class='btn btn-default' id='closebtn' ng-click='user.toggleLogin()'>X</button></span>
+              <div class='modal-body'>
+                <div class="container text-center" ng-if="user.loginDisplay">
+                  <form ng-submit="user.login(userJWT)">
+                    <input type="text" ng-model="userJWT.username" placeholder="username"></br>
+                    <input type="password" ng-model="userJWT.password" placeholder="password"><br/>
+                    <button class="btn btn-primary" type="submit" name="button">Login</button>
+                  </form>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Register Modal -->
+    <div id='registermodal' ng-if='user.registerDisplay'>
+      <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <!-- Close Button -->
+              <span class="text-top"><button class='btn btn-default' id='closebtn' ng-click='user.toggleRegister()'>X</button></span>
+              <div class='modal-body'>
+                <div class="container text-center">
+                  <form ng-submit="user.register(userRegister)">
+                    <input type="text" ng-model="userRegister.username" placeholder="username">
+                    <input type="password" ng-model="userRegister.password" placeholder="password">
+                    <!-- not sure exactly how to run the confirm password thing -->
+                    <!-- <input type="password" ng-model="userRegister.password" placeholder="confirm password"><br/> -->
+                    <button class="btn btn-primary" type="submit">Register</button>
+                  </form>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- determines show page for landing -->
+    <section ng-if="user.userDisplay === false;">
+      <!-- header -->
+      <header class="jumbotron text-center">
+        <section class="demo">
+      <!-- Uncomment if you want buttons on the slideshow
+       <button class="next">Next</button>
+      <button class="prev">Previous</button> -->
+      <div class="container">
+        <!-- Slideshow -->
+        <div style="display: inline-block;" class="puffnpass">
+          <img src="https://www.marijuana.com/wp-content/uploads/2017/01/blackbeauty-3-1024x663.jpg"/>
+          <p>Black Beauty</p>
+        </div>
+        <div class="puffnpass">
+         <img src="https://www.marijuana.com/wp-content/uploads/2016/10/tko_gorilla_glue_4.jpg"/>
+         <p>Super Glue</p>
+        </div>
+        <div>
+          <img src="https://www.marijuana.com/wp-content/uploads/2016/10/d45812717867fc6e464ca49fab45b595-1024x976.jpg"/>
+          <p>Buddha's Sister</p>
+        </div>
+        <div class="puffnpass">
+          <img src="https://www.marijuana.com/wp-content/uploads/2016/09/facewreck-1024x877.jpg"/>
+          <p>Facewreck Haze</p>
+        </div>
+        <div class="puffnpass">
+          <img src="https://www.marijuana.com/wp-content/uploads/2016/09/dedbd4087f76e9523ca3ed360dddc999-1024x684.jpg"/>
+          <p>Bullrider</p>
+        </div>
+        <div class="puffnpass">
+          <img src="https://www.marijuana.com/wp-content/uploads/2016/08/Grape-Krush-1024x682.jpg"/>
+          <p>Grape Krush</p>
+        </div>
+        <div class="puffnpass">
+          <img src="https://www.marijuana.com/wp-content/uploads/2016/08/strawberry-cough-800x533.jpg"/>
+          <p>Ft. Collins Cough</p>
+        </div>
+      </div>
+    </section>
+      </header>
+  </section> <!-- end of landing page -->
+      <!-- <section ng-include="'./forms.html'"></section> -->
   <section ng-include="'./user.html'" ng-if="user.userDisplay"></section>
   </body>
   <footer class="footer">
