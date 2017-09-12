@@ -144,7 +144,6 @@ app.controller('userController', ['$http', function($http){
     console.log('current user is: ' + this.currentUser);
   }
   this.getUsers();
-  this.test();
 }]);
 
 
