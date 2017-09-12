@@ -24,3 +24,13 @@
     </div>
   </div>
 </div>
+<section ng-controller='strainController as strain' class='text-center'>
+  <h1>favorite bud</h1>
+  <div class="strains">
+    <div class="eachStrain" ng-repeat='w in strain.weed'>
+      <img src="{{w.img}}" class='strainImg'>
+      <h4>{{w.name}}</h4>
+      <h6 class='text-muted'>{{w.group}}</h6>
+    </div>
+  </div>
+</section>

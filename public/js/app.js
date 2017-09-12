@@ -8,7 +8,7 @@ app.controller('userController', ['$http', function($http){
   const controller = this;
   this.loginDisplay = false;
   this.registerDisplay = false;
-  this.userDisplay = false;
+  this.userDisplay = true;
   this.editDisplay = false;
   this.url = 'http://localhost:3000';
   //Functions to change displays on the DOM
