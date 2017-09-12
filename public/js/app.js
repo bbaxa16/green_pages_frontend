@@ -12,24 +12,6 @@ app.controller('userController', ['$http', function($http){
   this.editDisplay = false;
   this.url = 'http://localhost:3000';
   //Functions to change displays on the DOM
-  this.addToFavorites = function(user_id){
-    $http({
-      method: 'POST',
-      url: this.url + '/ledgers/'
-      headers: {
-        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
-      },
-      data: {
-        user_id: controller.currentUser,
-        strain_id:
-        qty: 1
-      }
-    }).then(function(response){
-      console.log('this is the response', response)
-    }, function(err){
-      console.log(err)
-    })
-  }
   this.phoneHome = function(){
     this.userDisplay = false;
   }
@@ -165,6 +147,20 @@ app.controller('userController', ['$http', function($http){
   this.test = function(){
     console.log('current user is: ' + this.currentUser);
   }
+  this.getFavorites = function(){
+    $http({
+      method: 'GET',
+      url: this.url + '/ledgers/',
+    }).then(function(response){
+      for(let i = 0; i < response.data.length; i++){
+        if(response.data[i].user_id == localStorage.id){
+          controller.favs = response.data[i].strain;
+        }
+      }
+    }, function(err){
+      console.log(err)
+    })
+  }
   // this.getUsers();
   // this.setUser(this.id);
 }]);
@@ -173,6 +169,7 @@ app.controller('userController', ['$http', function($http){
 app.controller('strainController', ['$http', function($http){
   this.url = 'http://localhost:3000';
   const controller = this;
+  this.currentStrain = {};
   this.getStrains = function(){
     $http({
       method: 'GET',
@@ -189,9 +186,26 @@ app.controller('strainController', ['$http', function($http){
       url: this.url + '/strains/' + strain_id
     }).then(function(response){
       console.log('this is the response', response);
+      controller.currentStrain = response.data;
     }, function(err){
       console.log('error', err);
     })
   }
+  this.addToFavorites = function(user_id, strain_id){
+    $http({
+      method: 'POST',
+      url: this.url + '/ledgers/',
+      data: {
+        user_id: localStorage.id,
+        strain_id: this.currentStrain.id,
+        qty: 1
+      }
+    }).then(function(response){
+      console.log('this is the response', response)
+    }, function(err){
+      console.log('this is what we"re looking for', err, this.currentStrain);
+    })
+  }
   this.getStrains();
+  console.log('this is the current strain', this.currentStrain);
   }])
