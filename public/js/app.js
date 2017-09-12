@@ -81,7 +81,8 @@ app.controller('userController', ['$http', function($http){
       this.logged = true;
       this.username = localStorage.username.replace(/"/g,"")
       this.id = localStorage.id.replace(/"/g,"")
-      console.log(localStorage.token);
+      //console.log(localStorage.token);
+      console.log(response.data);
       }
     }.bind(this));
   }
@@ -105,11 +106,12 @@ app.controller('userController', ['$http', function($http){
       method: 'GET',
       url: this.url + '/users/' + id,
       headers: {
-  Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
-}
+        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+      }
     }).then(function(response){
       console.log('this is the setuser response');
-      console.log(response);
+      this.currentUser = response.data
+      console.log(this.currentUser);
     }, function(err){
       console.log(err);
     })
@@ -121,28 +123,43 @@ app.controller('userController', ['$http', function($http){
     this.logged = false;
   }
   this.update = function(id){
-    this.getUsers();
+    //this.setUser(this.id);
+    console.log('update route');
     $http({
       method: 'PUT',
       url: this.url + '/users/' + id,
-      data: this.updatedUser
+      headers: {
+        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+      },
+      data: { user: {
+        username: this.updatedUser.username,
+        password: this.updatedUser.password, favorites: [this.strain] }}
     }).then(function(response){
+      console.log('good put route');
       console.log(response);
       controller.getUsers();
     }, function(err){
+      console.log('ERROR =======');
       console.log(err);
+      console.log(controller.currentUser);
     })
   }
   this.delete = function(id){
     $http({
       method: 'DELETE',
-      url: this.url + '/users/' + id
+      url: this.url + '/users/' + id,
+      headers: {
+        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+      }
     }).then(function(response){
       console.log(response);
       controller.logout();
     }, function(err){
       console.log(err);
     })
+  }
+  this.test = function(){
+    console.log('current user is: ' + this.currentUser);
   }
   this.getUsers();
 }]);
