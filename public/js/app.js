@@ -52,7 +52,7 @@ app.controller('userController', ['$http', function($http){
   }
   this.toggleEdit = function(){
     this.editDisplay = !this.editDisplay
-    this.getUsers();
+    this.setUser(this.id);
   }
   //AJAX REQUESTS
   this.register = function(userRegister){
@@ -162,6 +162,7 @@ app.controller('userController', ['$http', function($http){
     console.log('current user is: ' + this.currentUser);
   }
   this.getUsers();
+  //this.setUser(this.id)
 }]);
 
 //strains controller

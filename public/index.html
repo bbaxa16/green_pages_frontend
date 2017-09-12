@@ -26,7 +26,7 @@
           <ul class="nav navbar-right">
             <li class="nav-btn" ng-hide='user.logged'ng-click="user.toggleLogin()">login</li>
             <li class="nav-btn" ng-hide='user.logged' ng-click="user.toggleRegister()"> register</li>
-            <li class="nav-btn" ng-show="user.logged"  ng-click='user.toggleUser()'>
+            <li class="nav-btn" ng-show="user.logged"  ng-click='user.toggleUser(); user.setUser(user.id)'>
               <i class="fa fa-user-o" aria-hidden="true"></i>
             </li>
             <li class="nav-btn" ng-show="user.logged" ng-click="user.logout()">logout</li>
