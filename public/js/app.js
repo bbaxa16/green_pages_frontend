@@ -10,8 +10,25 @@ app.controller('userController', ['$http', function($http){
   this.registerDisplay = false;
   this.userDisplay = false;
   this.editDisplay = false;
+  this.id = localStorage.id.replace(/"/g,"")
   this.url = 'http://localhost:3000';
   //Functions to change displays on the DOM
+  this.addToFavorites = function(user_id){
+    $http({
+      method: 'PUT',
+      url: this.url + '/users/' + user_id,
+      headers: {
+        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+      },
+      data: {
+        strain_id = this.currentStrain.id
+      }
+    }).then(function(response){
+      console.log('this is the response', response)
+    }, function(err){
+      console.log(err)
+    })
+  }
   this.phoneHome = function(){
     this.userDisplay = false;
   }
@@ -79,6 +96,7 @@ app.controller('userController', ['$http', function($http){
       localStorage.setItem('id', JSON.stringify(response.data.user.id));
       this.loginDisplay = false;
       this.getUsers();
+      console.log('this is the token', localStorage.token);
     }.bind(this));
   }
   this.setUser = function(id){
@@ -129,20 +147,6 @@ app.controller('userController', ['$http', function($http){
   this.getUsers();
 }]);
 
-// app.controller('ledgerController', ['$http', function($http){
-//   this.url = 'http://localhost:3000';
-//   const controller = this;
-//   const formdata = {};
-//   this.favorite = function(){
-//     $http({
-//       method: 'POST',
-//       url: this.url + '/ledgers'
-//     }).then(function(reponse){
-//       controller.
-//     })
-//   }
-// }])
-
 //strains controller
 app.controller('strainController', ['$http', function($http){
   this.url = 'http://localhost:3000';
@@ -157,19 +161,5 @@ app.controller('strainController', ['$http', function($http){
       console.log(err);
     })
   }
-  // this.favorite = function(id){
-  //   $http({
-  //     method: 'POST',
-  //     url: this.url + '/users/' + id,
-  //     headers: {
-  //       Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
-  //     },
-  //     data: this.
-  //   }).then(function(response){
-  //     controller.weed = response.data;
-  //   }, function(err){
-  //     console.log(err);
-  //   })
-  // }
   this.getStrains();
   }])
