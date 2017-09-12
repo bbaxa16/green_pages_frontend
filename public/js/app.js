@@ -115,7 +115,7 @@ app.controller('userController', ['$http', function($http){
       },
       data: { user: {
         username: this.updatedUser.username,
-        password: this.updatedUser.password }}
+        password: this.updatedUser.password, favorites: [this.strain] }}
     }).then(function(response){
       console.log('good put route');
       console.log(response);
