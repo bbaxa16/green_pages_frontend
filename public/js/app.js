@@ -63,6 +63,7 @@ app.controller('userController', ['$http', function($http){
       } else {
       this.logged = true;
       this.username = localStorage.username.replace(/"/g,"")
+      this.password = localStorage.password.replace(/"/g,"")
       this.id = localStorage.id.replace(/"/g,"")
       //console.log(localStorage.token);
       console.log(response.data);
@@ -77,9 +78,11 @@ app.controller('userController', ['$http', function($http){
     }).then(function(response){
       localStorage.setItem('token', JSON.stringify(response.data.token));
       localStorage.setItem('username', JSON.stringify(response.data.user.username));
+      localStorage.setItem('password', JSON.stringify(response.data.user.password));
       localStorage.setItem('id', JSON.stringify(response.data.user.id));
       this.loginDisplay = false;
       this.getUsers();
+      console.log('this is the token', localStorage.token);
     }.bind(this));
   }
   this.setUser = function(id){
@@ -115,7 +118,8 @@ app.controller('userController', ['$http', function($http){
       },
       data: { user: {
         username: this.updatedUser.username,
-        password: this.updatedUser.password, favorites: [this.strain] }}
+        password: this.updatedUser.password,
+        favorites: [this.strain] }}
     }).then(function(response){
       console.log('good put route');
       console.log(response);
@@ -143,28 +147,29 @@ app.controller('userController', ['$http', function($http){
   this.test = function(){
     console.log('current user is: ' + this.currentUser);
   }
-  this.getUsers();
-  //this.setUser(this.id)
+  this.getFavorites = function(){
+    $http({
+      method: 'GET',
+      url: this.url + '/ledgers/',
+    }).then(function(response){
+      for(let i = 0; i < response.data.length; i++){
+        if(response.data[i].user_id == localStorage.id){
+          controller.favs = response.data[i].strain;
+        }
+      }
+    }, function(err){
+      console.log(err)
+    })
+  }
+  // this.getUsers();
+  // this.setUser(this.id);
 }]);
-
-// app.controller('ledgerController', ['$http', function($http){
-//   this.url = 'http://localhost:3000';
-//   const controller = this;
-//   const formdata = {};
-//   this.favorite = function(){
-//     $http({
-//       method: 'POST',
-//       url: this.url + '/ledgers'
-//     }).then(function(reponse){
-//       controller.
-//     })
-//   }
-// }])
 
 //strains controller
 app.controller('strainController', ['$http', function($http){
   this.url = 'http://localhost:3000';
   const controller = this;
+  this.currentStrain = {};
   this.getStrains = function(){
     $http({
       method: 'GET',
@@ -175,19 +180,32 @@ app.controller('strainController', ['$http', function($http){
       console.log(err);
     })
   }
-  // this.favorite = function(id){
-  //   $http({
-  //     method: 'POST',
-  //     url: this.url + '/users/' + id,
-  //     headers: {
-  //       Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
-  //     },
-  //     data: this.
-  //   }).then(function(response){
-  //     controller.weed = response.data;
-  //   }, function(err){
-  //     console.log(err);
-  //   })
-  // }
+  this.getCurrentStrain = function(strain_id){
+    $http({
+      method: 'GET',
+      url: this.url + '/strains/' + strain_id
+    }).then(function(response){
+      console.log('this is the response', response);
+      controller.currentStrain = response.data;
+    }, function(err){
+      console.log('error', err);
+    })
+  }
+  this.addToFavorites = function(user_id, strain_id){
+    $http({
+      method: 'POST',
+      url: this.url + '/ledgers/',
+      data: {
+        user_id: localStorage.id,
+        strain_id: this.currentStrain.id,
+        qty: 1
+      }
+    }).then(function(response){
+      console.log('this is the response', response)
+    }, function(err){
+      console.log('this is what we"re looking for', err, this.currentStrain);
+    })
+  }
   this.getStrains();
+  console.log('this is the current strain', this.currentStrain);
   }])
