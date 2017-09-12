@@ -1,6 +1,6 @@
 <div class="jumbotron text-center">
   <div class="containter-fluid text-center">
-    <h1>{{user.username}}</h1>
+    <h1>{{user.currentUser.username}}</h1>
   </div>
 
 <ul class='nav nav-tabs'>
@@ -24,3 +24,24 @@
     </div>
   </div>
 </div>
+<div>
+<button ng-click='user.setUser(user.id)'>set user</button>
+<!-- <h1>{{user.currentUser.strains}}</h1> -->
+</div>
+<div class='strains'>
+<div class="eachStrain" ng-repeat='strain in user.currentUser.strains'>
+  <img src="{{strain.img}}" class='strainImg'>
+  <h4>{{strain.name}}</h4>
+  <h6 class='text-muted'>{{strain.group}}</h6>
+</div>
+</div>
+<!-- <section ng-controller='strainController as strain' class='text-center'>
+  <h1>favorite bud</h1>
+  <div class="strains">
+    <div class="eachStrain" ng-repeat='w in strain.weed'>
+      <img src="{{w.img}}" class='strainImg'>
+      <h4>{{w.name}}</h4>
+      <h6 class='text-muted'>{{w.group}}</h6>
+    </div>
+  </div>
+</section> -->
