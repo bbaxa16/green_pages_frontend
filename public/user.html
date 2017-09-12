@@ -1,7 +1,6 @@
 <div class="jumbotron text-center">
   <div class="containter-fluid text-center">
     <h1>{{user.username}}</h1>
-    <h5>{{user.id}}</h5>
   </div>
 
 <ul class='nav nav-tabs'>
@@ -10,10 +9,9 @@
   </li>
 </ul>
 
-
 <div class='tab-content'>
 
-<div id='edit' role='tabpanel' ng-if='user.editDisplay'>
+<div id='edit' role='tabpanel' ng-if='user.editDisplay' class='container'>
   <form ng-submit="user.update(user.id)">
     <input type="text" ng-model="user.updatedUser.username" placeholder="username">
     <input type="password" ng-model="user.updatedUser.password" placeholder="password"><br/>
@@ -25,3 +23,9 @@
   </form>
 </div>
 </div>
+</div>
+<section ng-controller='strainController as strain'>
+  <div ng-repeat='w in strain.weed'>
+    {{w.name}}
+  </div>
+</section>
