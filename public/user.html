@@ -9,23 +9,18 @@
   </li>
 </ul>
 
-<div class='tab-content'>
+  <div class='tab-content'>
 
-<div id='edit' role='tabpanel' ng-if='user.editDisplay' class='container'>
-  <form ng-submit="user.update(user.id)">
-    <input type="text" ng-model="user.updatedUser.username" placeholder="username">
-    <input type="password" ng-model="user.updatedUser.password" placeholder="password"><br/>
-    <br/>
-    <button class="btn-default" type="submit" name="button">Update</button>
-  </br>
-  </br>
-  <button class='btn btn-danger' ng-click='user.delete(user.id)'>Delete</button>
-  </form>
-</div>
-</div>
-</div>
-<section ng-controller='strainController as strain'>
-  <div ng-repeat='w in strain.weed'>
-    {{w.name}}
+    <div id='edit' role='tabpanel' ng-if='user.editDisplay' class='container'>
+      <form ng-submit="user.update(user.id)">
+        <input type="text" ng-model="user.updatedUser.username" placeholder="{{user.username}}">
+        <input type="password" ng-model="user.updatedUser.password" placeholder="password"><br/>
+        <br/>
+        <button class="btn-default" type="submit" name="button">Update</button>
+      </br>
+      </br>
+      <button class='btn btn-danger' ng-click='user.delete(user.id)'>Delete</button>
+      </form>
+    </div>
   </div>
-</section>
+</div>
