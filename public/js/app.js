@@ -10,7 +10,7 @@ app.controller('userController', ['$http', function($http){
   this.registerDisplay = false;
   this.userDisplay = false;
   this.editDisplay = false;
-  this.id = localStorage.id.replace(/"/g,"")
+  // this.id = localStorage.id.replace(/"/g,"")
   this.url = 'http://localhost:3000';
   //Functions to change displays on the DOM
   this.addToFavorites = function(user_id){
@@ -21,7 +21,7 @@ app.controller('userController', ['$http', function($http){
         Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
       },
       data: {
-        strain_id = this.currentStrain.id
+        strain_id: this.currentStrain.id
       }
     }).then(function(response){
       console.log('this is the response', response)
