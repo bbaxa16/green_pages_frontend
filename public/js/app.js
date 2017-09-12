@@ -10,7 +10,7 @@ app.controller('userController', ['$http', function($http){
   this.registerDisplay = false;
   this.userDisplay = false;
   this.editDisplay = false;
-  this.url = 'http://localhost:3000';
+  this.url = 'http://green-pages-api.herokuapp.com';
   //Functions to change displays on the DOM
   this.phoneHome = function(){
     this.userDisplay = false;
@@ -167,7 +167,7 @@ app.controller('userController', ['$http', function($http){
 
 //strains controller
 app.controller('strainController', ['$http', function($http){
-  this.url = 'http://localhost:3000';
+  this.url = 'http://green-pages-api.herokuapp.com';
   const controller = this;
   this.currentStrain = {};
   this.getStrains = function(){
