@@ -71,6 +71,29 @@ footer {
   height: 80%;
 }
 
+.strains {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  overflow: hidden;
+  align-items: center;
+  text-align: center;
+  padding: 0;
+}
+
+.eachStrain {
+  border: 2px solid #b0c4de;
+}
+
+.strainImg {
+  max-width: 250px;
+  width: 100%;
+  height: 250px;
+  margin: 0 auto;
+}
+
+
 /* uncomment if you want to see buttons for slideshow
 
 button {

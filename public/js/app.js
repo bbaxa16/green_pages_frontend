@@ -129,22 +129,47 @@ app.controller('userController', ['$http', function($http){
   this.getUsers();
 }]);
 
-
-
+// app.controller('ledgerController', ['$http', function($http){
+//   this.url = 'http://localhost:3000';
+//   const controller = this;
+//   const formdata = {};
+//   this.favorite = function(){
+//     $http({
+//       method: 'POST',
+//       url: this.url + '/ledgers'
+//     }).then(function(reponse){
+//       controller.
+//     })
+//   }
+// }])
 
 //strains controller
 app.controller('strainController', ['$http', function($http){
-this.url = 'http://localhost:3000';
-const controller = this;
-this.getStrains = function(){
-  $http({
-    method: 'GET',
-    url: this.url + '/strains'
-  }).then(function(response){
-    controller.weed = response.data;
-  }, function(err){
-    console.log(err);
-  })
-}
-this.getStrains();
-}])
+  this.url = 'http://localhost:3000';
+  const controller = this;
+  this.getStrains = function(){
+    $http({
+      method: 'GET',
+      url: this.url + '/strains'
+    }).then(function(response){
+      controller.weed = response.data;
+    }, function(err){
+      console.log(err);
+    })
+  }
+  // this.favorite = function(id){
+  //   $http({
+  //     method: 'POST',
+  //     url: this.url + '/users/' + id,
+  //     headers: {
+  //       Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+  //     },
+  //     data: this.
+  //   }).then(function(response){
+  //     controller.weed = response.data;
+  //   }, function(err){
+  //     console.log(err);
+  //   })
+  // }
+  this.getStrains();
+  }])
