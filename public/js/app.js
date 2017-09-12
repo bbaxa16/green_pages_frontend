@@ -95,8 +95,8 @@ app.controller('userController', ['$http', function($http){
       }
     }).then(function(response){
       console.log('this is the setuser response');
-      this.currentUser = response.data
-      console.log(this.currentUser);
+      controller.currentUser = response.data
+      console.log(controller.currentUser);
     }, function(err){
       console.log(err);
     })
@@ -161,7 +161,7 @@ app.controller('userController', ['$http', function($http){
       console.log(err)
     })
   }
-  // this.getUsers();
+  this.getUsers();
   // this.setUser(this.id);
 }]);
 
