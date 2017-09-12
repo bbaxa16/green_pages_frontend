@@ -10,18 +10,19 @@ app.controller('userController', ['$http', function($http){
   this.registerDisplay = false;
   this.userDisplay = false;
   this.editDisplay = false;
-  // this.id = localStorage.id.replace(/"/g,"")
   this.url = 'http://localhost:3000';
   //Functions to change displays on the DOM
   this.addToFavorites = function(user_id){
     $http({
-      method: 'PUT',
-      url: this.url + '/users/' + user_id,
+      method: 'POST',
+      url: this.url + '/ledgers/'
       headers: {
         Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
       },
       data: {
-        strain_id: this.currentStrain.id
+        user_id: controller.currentUser,
+        strain_id:
+        qty: 1
       }
     }).then(function(response){
       console.log('this is the response', response)
@@ -80,6 +81,7 @@ app.controller('userController', ['$http', function($http){
       } else {
       this.logged = true;
       this.username = localStorage.username.replace(/"/g,"")
+      this.password = localStorage.password.replace(/"/g,"")
       this.id = localStorage.id.replace(/"/g,"")
       //console.log(localStorage.token);
       console.log(response.data);
@@ -94,6 +96,7 @@ app.controller('userController', ['$http', function($http){
     }).then(function(response){
       localStorage.setItem('token', JSON.stringify(response.data.token));
       localStorage.setItem('username', JSON.stringify(response.data.user.username));
+      localStorage.setItem('password', JSON.stringify(response.data.user.password));
       localStorage.setItem('id', JSON.stringify(response.data.user.id));
       this.loginDisplay = false;
       this.getUsers();
@@ -133,7 +136,8 @@ app.controller('userController', ['$http', function($http){
       },
       data: { user: {
         username: this.updatedUser.username,
-        password: this.updatedUser.password, favorites: [this.strain] }}
+        password: this.updatedUser.password,
+        favorites: [this.strain] }}
     }).then(function(response){
       console.log('good put route');
       console.log(response);
@@ -161,8 +165,8 @@ app.controller('userController', ['$http', function($http){
   this.test = function(){
     console.log('current user is: ' + this.currentUser);
   }
-  this.getUsers();
-  //this.setUser(this.id)
+  // this.getUsers();
+  // this.setUser(this.id);
 }]);
 
 //strains controller
@@ -177,6 +181,16 @@ app.controller('strainController', ['$http', function($http){
       controller.weed = response.data;
     }, function(err){
       console.log(err);
+    })
+  }
+  this.getCurrentStrain = function(strain_id){
+    $http({
+      method: 'GET',
+      url: this.url + '/strains/' + strain_id
+    }).then(function(response){
+      console.log('this is the response', response);
+    }, function(err){
+      console.log('error', err);
     })
   }
   this.getStrains();
