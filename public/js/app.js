@@ -65,6 +65,7 @@ app.controller('userController', ['$http', function($http){
       this.username = localStorage.username.replace(/"/g,"")
       this.id = localStorage.id.replace(/"/g,"")
       //console.log(localStorage.token);
+      console.log(response.data);
       }
     }.bind(this));
   }
@@ -128,7 +129,10 @@ app.controller('userController', ['$http', function($http){
   this.delete = function(id){
     $http({
       method: 'DELETE',
-      url: this.url + '/users/' + id
+      url: this.url + '/users/' + id,
+      headers: {
+        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+      }
     }).then(function(response){
       console.log(response);
       controller.logout();
