@@ -23,7 +23,7 @@
       <div class="container-fluid">
         <div class="site-nav">
           <a href="#" class="navbar-brand" ng-click="user.phoneHome()"><img class="logo" src="./css/assets/greenpages2.png"/></a>
-          <ul class="nav nabvar-right">
+          <ul class="nav navbar-right">
             <li class="nav-btn" ng-hide='user.logged'ng-click="user.toggleLogin()">login</li>
             <li class="nav-btn" ng-hide='user.logged' ng-click="user.toggleRegister()"> register</li>
             <li class="nav-btn" ng-show="user.logged" ng-click="user.toggleUser()">
@@ -36,11 +36,6 @@
     </nav>
     <button ng-click="user.setUser(user.id)">set user</button>
 
-    <section ng-controller='strainController as strain'>
-      <div ng-repeat='w in strain.weed'>
-        <h1>{{w.name}}</h1>
-      </div>
-    </section>
     <!--Login Modal -->
     <div id='loginmodal' ng-if='user.loginDisplay'>
       <div class='modal-dialog' role='document'>
@@ -123,7 +118,20 @@
         </div>
       </div>
     </section>
-      </header>
+  </header>
+
+    <!--Divs with all the strains-->
+  <section ng-controller='strainController as strain' class="strains">
+    <div ng-repeat='w in strain.weed' class="eachStrain">
+      <img src="{{w.img}}" class="strainImg"/>
+        <br/>
+      {{w.name}}
+        <br/>
+      {{w.group}}
+      <!-- <div ng-click="strain.favorite()">[favorite this]</div> -->
+    </div>
+  </section>
+
   </section> <!-- end of landing page -->
       <!-- <section ng-include="'./forms.html'"></section> -->
   <section ng-include="'./user.html'" ng-if="user.userDisplay"></section>
