@@ -1,24 +1,6 @@
 const app = angular.module('green-pages', []);
 
-app.controller('slideController', function($interval){
-  const controller = this;
-  controller.slides = [
-    { images: 'https://www.marijuana.com/wp-content/uploads/2017/01/blackbeauty-3-1024x663.jpg' },
-    { images: 'https://www.marijuana.com/wp-content/uploads/2016/10/tko_gorilla_glue_4.jpg' },
-    { images: 'https://www.marijuana.com/wp-content/uploads/2016/10/d45812717867fc6e464ca49fab45b595-1024x976.jpg' },
-    { images: 'https://www.marijuana.com/wp-content/uploads/2016/09/facewreck-1024x877.jpg' },
-    { images: 'https://www.marijuana.com/wp-content/uploads/2016/09/dedbd4087f76e9523ca3ed360dddc999-1024x684.jpg' },
-    { images: 'https://www.marijuana.com/wp-content/uploads/2016/08/Grape-Krush-1024x682.jpg' },
-    { images: 'https://www.marijuana.com/wp-content/uploads/2016/08/strawberry-cough-800x533.jpg' }
-  ];
-  controller.slide = slides[0];
-  $interval(function(){
-    if(controller.slide == slides[0]){
-      controller.slide = slides[1];
-    } else {
-      controller.slide = slides[0];
-    }, 3000, 0);
-});
+
 
 
 //////////////////
@@ -230,4 +212,4 @@ app.controller('strainController', ['$http', function($http){
 
   this.getStrains();
   console.log('this is the current strain', this.currentStrain);
-  }])
+}]);
