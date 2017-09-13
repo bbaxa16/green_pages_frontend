@@ -48,6 +48,7 @@ app.controller('userController', ['$http', function($http){
       }},
     }).then(function(response) {
       console.log(response);
+      controller.registerDisplay = false;
     })
   }
   this.getUsers = function(){
