@@ -1,5 +1,8 @@
 const app = angular.module('green-pages', []);
 
+
+
+
 //////////////////
 //USERS controller
 /////////////////
@@ -206,6 +209,7 @@ app.controller('strainController', ['$http', function($http){
       console.log('this is what we"re looking for', err, this.currentStrain);
     })
   }
+
   this.getStrains();
   console.log('this is the current strain', this.currentStrain);
-  }])
+}]);
