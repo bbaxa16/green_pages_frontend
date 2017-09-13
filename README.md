@@ -15,7 +15,7 @@ live site: http://green-pages.herokuapp.com/
 
 - Single page application using AngularJS, with a many to many relationship with Ruby on Rails.
 
-#Tech:
+# Tech:
 - HTML, CSS, Bootstrap, Ruby, Rails, AngularJS, Express, jQuery, Bcrypt, JWT Authorization, Postman
 
 
