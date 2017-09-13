@@ -92,7 +92,6 @@ app.controller('userController', ['$http', function($http){
       localStorage.setItem('id', JSON.stringify(response.data.user.id));
       this.loginDisplay = false;
       this.getUsers();
-      console.log('this is the token', localStorage.token);
     }.bind(this));
   }
   this.setUser = function(id){
