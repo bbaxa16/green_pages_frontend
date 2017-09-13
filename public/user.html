@@ -10,38 +10,26 @@
 </ul>
 
   <div class='tab-content'>
-
     <div id='edit' role='tabpanel' ng-if='user.editDisplay' class='container'>
       <form ng-submit="user.update(user.id)">
         <input type="text" ng-model="user.updatedUser.username" placeholder="{{user.username}}">
         <input type="password" ng-model="user.updatedUser.password" placeholder="password"><br/>
         <br/>
         <button class="btn-default" type="submit" name="button">Update</button>
-      </br>
-      </br>
-      <button class='btn btn-danger' ng-click='user.delete(user.id)'>Delete</button>
-      </form>
-    </div>
+        </br>
+        </br>
+        <button class='btn btn-danger' ng-click='user.delete(user.id)'>Delete</button>
+        </form>
+      </div>
   </div>
 </div>
 <div>
-<button ng-click='user.setUser(user.id)'>set user</button>
-<!-- <h1>{{user.currentUser.strains}}</h1> -->
 </div>
+<!-- user favorite strains -->
 <div class='strains'>
-<div class="eachStrain" ng-repeat='strain in user.currentUser.strains'>
-  <img src="{{strain.img}}" class='strainImg'>
-  <h4>{{strain.name}}</h4>
-  <h6 class='text-muted'>{{strain.group}}</h6>
-</div>
-</div>
-<!-- <section ng-controller='strainController as strain' class='text-center'>
-  <h1>favorite bud</h1>
-  <div class="strains">
-    <div class="eachStrain" ng-repeat='w in strain.weed'>
-      <img src="{{w.img}}" class='strainImg'>
-      <h4>{{w.name}}</h4>
-      <h6 class='text-muted'>{{w.group}}</h6>
-    </div>
+  <div class="eachStrain" ng-repeat='strain in user.currentUser.strains'>
+    <img src="{{strain.img}}" class='strainImg'>
+    <h4>{{strain.name}}</h4>
+    <h6 class='text-muted'>{{strain.group}}</h6>
   </div>
-</section> -->
+</div>
