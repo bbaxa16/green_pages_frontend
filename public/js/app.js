@@ -48,6 +48,9 @@ app.controller('userController', ['$http', function($http){
       }},
     }).then(function(response) {
       console.log(response);
+      //controller.newUser = response.data
+      //console.log(controller.newUser);
+      //controller.login();
     })
   }
   this.getUsers = function(){
