@@ -48,9 +48,6 @@ app.controller('userController', ['$http', function($http){
       }},
     }).then(function(response) {
       console.log(response);
-      //controller.newUser = response.data
-      //console.log(controller.newUser);
-      //controller.login();
     })
   }
   this.getUsers = function(){
@@ -68,8 +65,6 @@ app.controller('userController', ['$http', function($http){
       this.username = localStorage.username.replace(/"/g,"")
       this.password = localStorage.password.replace(/"/g,"")
       this.id = localStorage.id.replace(/"/g,"")
-      //console.log(localStorage.token);
-      console.log(response.data);
       }
     }.bind(this));
   }
@@ -89,7 +84,6 @@ app.controller('userController', ['$http', function($http){
     }.bind(this));
   }
   this.setUser = function(id){
-    console.log('set user being ran');
     $http({
       method: 'GET',
       url: this.url + '/users/' + id,
@@ -97,7 +91,6 @@ app.controller('userController', ['$http', function($http){
         Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
       }
     }).then(function(response){
-      console.log('this is the setuser response');
       controller.currentUser = response.data
       console.log(controller.currentUser);
     }, function(err){
@@ -111,7 +104,6 @@ app.controller('userController', ['$http', function($http){
     this.logged = false;
   }
   this.update = function(id){
-    //this.setUser(this.id);
     console.log('update route');
     $http({
       method: 'PUT',
@@ -124,13 +116,10 @@ app.controller('userController', ['$http', function($http){
         password: this.updatedUser.password,
         favorites: [this.strain] }}
     }).then(function(response){
-      console.log('good put route');
       console.log(response);
       controller.getUsers();
     }, function(err){
-      console.log('ERROR =======');
       console.log(err);
-      console.log(controller.currentUser);
     })
   }
   this.delete = function(id){
@@ -147,9 +136,6 @@ app.controller('userController', ['$http', function($http){
       console.log(err);
     })
   }
-  this.test = function(){
-    console.log('current user is: ' + this.currentUser);
-  }
   this.getFavorites = function(){
     $http({
       method: 'GET',
@@ -165,10 +151,13 @@ app.controller('userController', ['$http', function($http){
     })
   }
   this.getUsers();
-  // this.setUser(this.id);
 }]);
 
-//strains controller
+//////////////////
+//STRAINS controller
+/////////////////
+
+
 app.controller('strainController', ['$http', function($http){
   this.url = 'http://localhost:3000';
   const controller = this;
