@@ -53,6 +53,7 @@
                     <input type="password" ng-model="userJWT.password" placeholder="password"><br/>
                     <button class="btn btn-primary" type="submit" name="button">Login</button>
                   </form>
+                  <h5 class='text-danger'>{{user.error}}</h5>
                 </div>
             </div>
           </div>
@@ -71,10 +72,9 @@
                   <form ng-submit="user.register(userRegister)">
                     <input type="text" ng-model="userRegister.username" placeholder="username">
                     <input type="password" ng-model="userRegister.password" placeholder="password">
-                    <!-- not sure exactly how to run the confirm password thing -->
-                    <!-- <input type="password" ng-model="userRegister.password" placeholder="confirm password"><br/> -->
                     <button class="btn btn-primary" type="submit">Register</button>
                   </form>
+                  <h5 class='text-danger'>{{user.nope}}</h5>
                 </div>
             </div>
           </div>
