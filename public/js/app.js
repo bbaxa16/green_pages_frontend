@@ -49,6 +49,17 @@ app.controller('userController', ['$http', function($http){
     }).then(function(response) {
       console.log(response);
       controller.registerDisplay = false;
+    }, function(err){
+      if(err.data.username == undefined){
+        controller.nope = err.data.password[0];
+        console.log(controller.nope);
+      }
+      else if(err.data.password == undefined){
+        controller.nope = err.data.username[0];
+        console.log(controller.nope);
+      }
+      controller.error = err
+      console.log(err.data);
     })
   }
   this.getUsers = function(){
