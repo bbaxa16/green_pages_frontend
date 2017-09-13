@@ -173,7 +173,7 @@ app.controller('userController', ['$http', function($http){
 
 
 app.controller('strainController', ['$http', function($http){
-  this.url = 'http://green-pages-api.herokuapp.com';
+  this.url = 'http://green-pages-api.herokuapp.com/';
   const controller = this;
   this.currentStrain = {};
   this.getStrains = function(){
