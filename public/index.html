@@ -2,17 +2,24 @@
 <html ng-app='green-pages'>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- style -->
+
+    <!---glyphicons-->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
+    <!--bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
+    <!--CSS file-->
     <link rel="stylesheet" href="./css/main.css">
+
     <!-- script -->
     <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/af5dc9ce4b.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js" charset="utf-8"></script>
     <script src="./js/dom.js" charset="utf-8"></script>
@@ -83,50 +90,52 @@
     <!-- determines show page for landing -->
     <section ng-if="user.userDisplay === false;">
       <!-- header -->
-      <header class="jumbotron text-center">
-        <section class="demo">
-      <!-- Uncomment if you want buttons on the slideshow
-       <button class="next">Next</button>
-      <button class="prev">Previous</button> -->
-      <div class="container">
-        <!-- Slideshow -->
-        <div style="display: inline-block;" class="puffnpass img-responsive">
-          <img src="https://www.marijuana.com/wp-content/uploads/2017/01/blackbeauty-3-1024x663.jpg"/>
-          <p>Black Beauty</p>
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+          <li data-target="#myCarousel" data-slide-to="3"></li>
+          <li data-target="#myCarousel" data-slide-to="4"></li>
+          <li data-target="#myCarousel" data-slide-to="5"></li>
+          <li data-target="#myCarousel" data-slide-to="6"></li>
+          <li data-target="#myCarousel" data-slide-to="7"></li>
+        </ol>
+
+        <div class="carousel-inner">
+          <div class="item active">
+            <img src="https://www.marijuana.com/wp-content/uploads/2017/01/blackbeauty-3-1024x663.jpg" alt="Los Angeles">
+          </div>
+
+          <div class="item">
+            <img src="https://www.marijuana.com/wp-content/uploads/2017/01/blackbeauty-3-1024x663.jpg" alt="Los Angeles">
+          </div>
+
+          <div class="item">
+            <img src="https://www.marijuana.com/wp-content/uploads/2017/01/blackbeauty-3-1024x663.jpg" alt="Los Angeles">
+          </div>
         </div>
-        <div class="puffnpass img-responsive">
-         <img src="https://www.marijuana.com/wp-content/uploads/2016/10/tko_gorilla_glue_4.jpg"/>
-         <p>Super Glue</p>
-        </div>
-        <div class="puffnpass img-responsive">
-          <img src="https://www.marijuana.com/wp-content/uploads/2016/10/d45812717867fc6e464ca49fab45b595-1024x976.jpg"/>
-          <p>Buddha's Sister</p>
-        </div>
-        <div class="puffnpass img-responsive">
-          <img src="https://www.marijuana.com/wp-content/uploads/2016/09/facewreck-1024x877.jpg"/>
-          <p>Facewreck Haze</p>
-        </div>
-        <div class="puffnpass img-responsive">
-          <img src="https://www.marijuana.com/wp-content/uploads/2016/09/dedbd4087f76e9523ca3ed360dddc999-1024x684.jpg"/>
-          <p>Bullrider</p>
-        </div>
-        <div class="puffnpass img-responsive">
-          <img src="https://www.marijuana.com/wp-content/uploads/2016/08/Grape-Krush-1024x682.jpg"/>
-          <p>Grape Krush</p>
-        </div>
-        <div class="puffnpass img-responsive">
-          <img src="https://www.marijuana.com/wp-content/uploads/2016/08/strawberry-cough-800x533.jpg"/>
-          <p>Ft. Collins Cough</p>
-        </div>
+
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          <span class="sr-only">Next</span>
+        </a>
+
       </div>
-    </section>
-  </header>
+
 
     <!--Divs with all the strains-->
   <section ng-controller='strainController as strain' class="strains">
     <div ng-click="strain.getCurrentStrain(w.id); user.setUser(user.id)" ng-repeat='w in strain.weed' class="eachStrain thumbnail">
       <img src="{{w.img}}" class="strainImg"/>
-      <form ng-submit="strain.addToFavorites(user.id, strain.currentStrain.id)">
+      <div ng-if="!user.logged"><br/></div>
+      <form ng-if="user.logged" ng-submit="strain.addToFavorites(user.id, strain.currentStrain.id)">
         <button type="submit" class="btn btn-lg">
           <span class="glyphicon glyphicon-heart" aria-hidden="true">
           </span>
